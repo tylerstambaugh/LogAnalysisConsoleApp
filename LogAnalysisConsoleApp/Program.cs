@@ -10,6 +10,7 @@ Console.ReadLine();
 Console.WriteLine(LogAnalysis.SubstringBetween("[INFO]: File Deleted.", "[", "]"));
 
 Console.ReadLine();
+
 public static class LogAnalysis
 {
     public static string SubstringAfter(this string str, string delimeter)
@@ -23,18 +24,11 @@ public static class LogAnalysis
         string del2 = delimeter2.Trim();
         string trimmedString = str.Replace(" ", "");
 
-        Console.WriteLine($"Length of the string to find {trimmedString.Length}");
+        string firstDelRemoved = trimmedString.Substring(trimmedString.IndexOf(del1) + del1.Length); ;
 
-        Console.WriteLine("first delimeter, length of first delimiter, second delimiter, length of second delimter");
-        Console.WriteLine(delimeter1 + " " + delimeter1.Trim().Length + " " + delimeter2 + " " + delimeter2.Trim().Length);
+        string secondDelRemoved = firstDelRemoved.Substring(0, firstDelRemoved.IndexOf(del2));
 
-        Console.WriteLine("index of first delimeter, kength of first delimeter, index of second delimeter, length of second delimeter");
-        Console.WriteLine(trimmedString.IndexOf(delimeter1) + " " + delimeter1.Trim().Length + " " + trimmedString.IndexOf(delimeter2) + " " + delimeter2.Trim().Length);
-
-        Console.WriteLine("Trimmed string:");
-        Console.WriteLine(trimmedString);
-
-        return trimmedString.Substring(trimmedString.IndexOf(del1) + del1.Length, trimmedString.IndexOf(del2) - del2.Length);
+        return $"{secondDelRemoved}";
     }
     public static string Message(this string str)
     {
@@ -44,4 +38,3 @@ public static class LogAnalysis
     {
         return SubstringBetween(str, "[", "]");
     }
-}
